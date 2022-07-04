@@ -16,6 +16,7 @@ public abstract class AbstractDao<E> implements Initializable {
     public abstract String getDirName();
 
     public abstract void save(E e);
+    public abstract void update(E e);
 
     public String getDirPath() {
         return BASE_DIR_PATH + "/" + this.getDirName();

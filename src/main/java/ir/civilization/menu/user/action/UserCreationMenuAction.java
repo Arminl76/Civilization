@@ -1,8 +1,9 @@
-package ir.civilization.menu;
+package ir.civilization.menu.user.action;
 
 
 import ir.civilization.dao.UserDao;
 import ir.civilization.dto.UserDTO;
+import ir.civilization.menu.AbstractMenuAction;
 import ir.civilization.model.user.User;
 import ir.civilization.validator.UserValidator;
 
@@ -22,7 +23,8 @@ public class UserCreationMenuAction extends AbstractMenuAction<UserDTO> {
     public void takeAction(UserDTO userDTO) {
         // validate input
         UserValidator.validateUserAddition(userDTO);
-        User user = userDTO.getSaved();
+        User user = new User();
+        userDTO.saveTo(user);
         UserDao.INSTANCE.save(user);
         System.out.println("user created successfully!");
     }

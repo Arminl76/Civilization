@@ -8,5 +8,6 @@ public interface ObjectHolder<E> {
     void remove(E e);
     void clearCache();
     Collection<E> getAll();
+    boolean isPresent(E e);
 
 }

@@ -35,4 +35,9 @@ public class UserHolder implements ObjectHolder<User> {
         return USERS;
     }
 
+    @Override
+    public boolean isPresent(User user) {
+        return USERS.contains(user);
+    }
+
 }

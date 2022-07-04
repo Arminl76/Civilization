@@ -1,11 +1,12 @@
-package ir.civilization.menu;
+package ir.civilization.menu.user.action;
 
 
 import ir.civilization.dao.UserDao;
 import ir.civilization.dto.UserDTO;
 import ir.civilization.exception.BadCredentialsException;
-import ir.civilization.holder.AuthenticatedUserHolder;
+import ir.civilization.menu.AbstractMenuAction;
 import ir.civilization.model.user.User;
+import ir.civilization.security.AuthenticatedUserHolder;
 
 import java.util.Optional;
 
@@ -28,7 +29,7 @@ public class UserLoginMenuAction extends AbstractMenuAction<UserDTO> {
     public void takeAction(UserDTO userDTO) {
         Optional<User> user = userDao.findByUsernameAndPassword(userDTO.getUsername(), userDTO.getPassword());
         if (user.isPresent()) {
-            authenticatedUserHolder.cache(user.get());
+            authenticatedUserHolder.setPrinciple(user.get());
             System.out.println("user logged in successfully!");
         } else
             throw new BadCredentialsException();

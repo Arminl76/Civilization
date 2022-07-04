@@ -42,6 +42,16 @@ public class UserDao extends AbstractDao<User> {
         userHolder.cache(user);
     }
 
+    @SneakyThrows
+    @Override
+    public void update(User user) {
+        String id = user.getId();
+        user.setId(id);
+        String json = OBJECT_MAPPER.writeValueAsString(user);
+        this.writeToFile(json, this.getUserFile(id + ".json"));
+        userHolder.cache(user);
+    }
+
     public Optional<User> findByUsername(String username) {
         return userHolder.getAll()
                 .stream()

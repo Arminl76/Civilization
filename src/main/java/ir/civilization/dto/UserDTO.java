@@ -1,6 +1,6 @@
 package ir.civilization.dto;
 
-import ir.civilization.menu.UserMenu;
+import ir.civilization.menu.user.UserMenu;
 import ir.civilization.model.user.User;
 import lombok.Data;
 import org.apache.commons.cli.CommandLine;
@@ -41,11 +41,9 @@ public class UserDTO implements CmdLoader, DtoSaver<User> {
     }
 
     @Override
-    public User getSaved() {
-        User user = new User();
+    public void saveTo(User user) {
         user.setUsername(this.getUsername());
         user.setPassword(this.getPassword());
         user.setNickname(this.getNickname());
-        return user;
     }
 }
