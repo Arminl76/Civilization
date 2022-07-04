@@ -11,6 +11,7 @@ public class UserMenu extends AbstractMenu {
     public static final UserMenu INSTANCE = new UserMenu();
 
     private static final String ACTION_CREATE = "create";
+    private static final String ACTION_LOGIN = "login";
 
     private static final String FLAG_USERNAME = "u";
     private static final String LONG_FLAG_USERNAME = "username";
@@ -44,6 +45,7 @@ public class UserMenu extends AbstractMenu {
     public Map<String, AbstractMenuAction<?>> getActionsMap() {
         Map<String, AbstractMenuAction<?>> actions = new HashMap<>();
         actions.put(ACTION_CREATE, UserCreationMenuAction.INSTANCE);
+        actions.put(ACTION_LOGIN, UserLoginMenuAction.INSTANCE);
         return actions;
     }
 

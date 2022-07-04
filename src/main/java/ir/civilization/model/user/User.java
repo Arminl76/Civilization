@@ -2,10 +2,12 @@ package ir.civilization.model.user;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.Objects;
 
 @Getter @Setter
+@ToString
 public class User {
 
     private String id;
