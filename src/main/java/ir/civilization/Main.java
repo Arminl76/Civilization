@@ -9,7 +9,9 @@ public class Main {
 
     public static void main(String[] args) throws ParseException {
         ClassInitializer.INSTANCE.initializeAllClasses();
-        UserMenu.INSTANCE.run("user login --username abba --password a123");
+        UserMenu.INSTANCE.run("user login --username abbas --password a123");
+        AuthenticatedUserHolder.INSTANCE.getAll().forEach(System.out::println);
+        UserMenu.INSTANCE.run("user logout --username abbas");
         AuthenticatedUserHolder.INSTANCE.getAll().forEach(System.out::println);
     }
 }
