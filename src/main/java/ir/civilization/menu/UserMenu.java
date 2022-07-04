@@ -8,6 +8,8 @@ import java.util.Map;
 
 public class UserMenu extends AbstractMenu {
 
+    public static final UserMenu INSTANCE = new UserMenu();
+
     private static final String ACTION_CREATE = "create";
 
     private static final String FLAG_USERNAME = "u";
@@ -20,6 +22,9 @@ public class UserMenu extends AbstractMenu {
     public static final Option OPTIONS_USERNAME = new Option(FLAG_USERNAME, LONG_FLAG_USERNAME, true, "User's username");
     public static final Option OPTIONS_PASSWORD = new Option(FLAG_PASSWORD, LONG_FLAG_PASSWORD, true, "User's password");
     public static final Option OPTIONS_NICKNAME = new Option(FLAG_NICKNAME, LONG_FLAG_NICKNAME, true, "User's nickname");
+
+    private UserMenu() {
+    }
 
     @Override
     public String getMenuName() {

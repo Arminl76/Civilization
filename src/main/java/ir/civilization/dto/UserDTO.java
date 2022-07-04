@@ -42,10 +42,10 @@ public class UserDTO implements CmdLoader, DtoSaver<User> {
 
     @Override
     public User getSaved() {
-        return User.builder()
-                .username(this.getUsername())
-                .password(this.getPassword())
-                .nickname(this.getNickname())
-                .build();
+        User user = new User();
+        user.setUsername(this.getUsername());
+        user.setPassword(this.getPassword());
+        user.setNickname(this.getNickname());
+        return user;
     }
 }
