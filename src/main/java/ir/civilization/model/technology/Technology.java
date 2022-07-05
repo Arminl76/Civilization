@@ -11,5 +11,4 @@ public class Technology {
     private List<Technology> prerequisiteTechs;
     private List<Technology> leadsToTechs;
     private TechnologyType type;
-
 }

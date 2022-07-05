@@ -22,4 +22,5 @@ public class Main {
         UserMenu.INSTANCE.run("user logout --username abbas");
         System.out.println(AuthenticatedUserHolder.INSTANCE.getPrinciple());
     }
+
 }

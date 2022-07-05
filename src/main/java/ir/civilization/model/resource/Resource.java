@@ -14,6 +14,5 @@ public class Resource {
     private Terrain canBeFoundOn;
     private ResourceType type;
     private Improvement improvementNeeded;
-
-
+    private String reqTechnology;
 }

@@ -11,7 +11,7 @@ import java.io.File;
  */
 public abstract class AbstractDao<E> implements Initializable {
 
-    public static final String BASE_DIR_PATH = "/tmp";
+    public static final String BASE_DIR_PATH = "C:/tmp";
 
     public abstract String getDirName();
 

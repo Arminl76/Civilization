@@ -14,6 +14,7 @@ public class Terrain {
     private int gold;
     private double fightingChanges;
     private int travelCost;
+    private String color;
 
     private List<TerrainFeatures> possibleFeatures;
     private List<Resource> possibleResources;
