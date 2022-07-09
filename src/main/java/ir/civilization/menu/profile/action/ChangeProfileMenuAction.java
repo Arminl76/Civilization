@@ -1,7 +1,7 @@
 package ir.civilization.menu.profile.action;
 
 
-import ir.civilization.dao.UserDao;
+import ir.civilization.dao.user.UserDao;
 import ir.civilization.dto.ChangePasswordDTO;
 import ir.civilization.dto.ProfileDTO;
 import ir.civilization.menu.AbstractMenuAction;

@@ -1,7 +1,7 @@
 package ir.civilization.menu.user.action;
 
 
-import ir.civilization.dao.UserDao;
+import ir.civilization.dao.user.UserDao;
 import ir.civilization.dto.UserDTO;
 import ir.civilization.menu.AbstractMenuAction;
 import ir.civilization.model.user.User;

@@ -1,5 +1,5 @@
 package ir.civilization.model.unit;
 
-public class MilitaryUnit extends Units {
+public class MilitaryUnit extends Unit {
 
 }

@@ -1,15 +1,12 @@
 package ir.civilization.menu.user.action;
 
 
-import ir.civilization.dao.UserDao;
-import ir.civilization.dto.UserDTO;
+import ir.civilization.dao.user.UserDao;
+import ir.civilization.dto.EmptyCmdLoader;
 import ir.civilization.menu.AbstractMenuAction;
-import ir.civilization.model.user.User;
 import ir.civilization.security.AuthenticatedUserHolder;
 
-import java.util.Optional;
-
-public class UserLogoutMenuAction extends AbstractMenuAction<UserDTO> {
+public class UserLogoutMenuAction extends AbstractMenuAction<EmptyCmdLoader> {
 
     public static final UserLogoutMenuAction INSTANCE = new UserLogoutMenuAction();
 
@@ -20,18 +17,13 @@ public class UserLogoutMenuAction extends AbstractMenuAction<UserDTO> {
     }
 
     @Override
-    public Class<UserDTO> getDtoClazz() {
-        return UserDTO.class;
+    public Class<EmptyCmdLoader> getDtoClazz() {
+        return EmptyCmdLoader.class;
     }
 
     @Override
-    public void takeAction(UserDTO userDTO) {
-        Optional<User> user = userDao.findByUsername(userDTO.getUsername());
-        if (user.isPresent()) {
-            authenticatedUserHolder.removePrinciple();
-            System.out.println("user logged out successfully!");
-        } else
-            System.out.println("no authenticated user founded!");
+    public void takeAction(EmptyCmdLoader emptyCmdLoader) {
+        authenticatedUserHolder.removePrinciple();
     }
 
 }

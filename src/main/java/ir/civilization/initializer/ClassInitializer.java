@@ -1,6 +1,6 @@
 package ir.civilization.initializer;
 
-import ir.civilization.dao.UserDao;
+import ir.civilization.dao.user.UserDao;
 
 import java.util.Collection;
 import java.util.HashSet;

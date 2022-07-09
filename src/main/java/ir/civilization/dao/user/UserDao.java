@@ -1,6 +1,7 @@
-package ir.civilization.dao;
+package ir.civilization.dao.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import ir.civilization.dao.AbstractDao;
 import ir.civilization.holder.UserHolder;
 import ir.civilization.model.user.User;
 import lombok.SneakyThrows;

@@ -1,6 +1,6 @@
 package ir.civilization.security;
 
-import ir.civilization.dao.UserDao;
+import ir.civilization.dao.user.UserDao;
 import ir.civilization.exception.UnAuthorizedException;
 import ir.civilization.exception.UserNotFountException;
 import ir.civilization.model.user.User;
@@ -12,7 +12,7 @@ public class AuthenticatedUserHolder {
 
     public static final AuthenticatedUserHolder INSTANCE = new AuthenticatedUserHolder();
 
-    private static final ThreadLocal<String> USERNAME_TL = new ThreadLocal<>();
+    private static final ThreadLocal<ExecutionContext> EC_TL = new ThreadLocal<>();
 
     private final UserDao userDao = UserDao.INSTANCE;
 
@@ -20,7 +20,11 @@ public class AuthenticatedUserHolder {
     }
 
     public String getPrinciple() {
-        return USERNAME_TL.get();
+        ExecutionContext context = EC_TL.get();
+        if (context == null)
+            return null;
+
+        return context.getUser().getUsername();
     }
 
     public User getAuthenticatedUser() {
@@ -36,15 +40,21 @@ public class AuthenticatedUserHolder {
     }
 
     public void setPrinciple(User user) {
-        USERNAME_TL.set(user.getUsername());
+        ExecutionContext context = new ExecutionContext();
+        context.setUser(user);
+        EC_TL.set(context);
+    }
+
+    public ExecutionContext getCurrentExecutionContext() {
+        return EC_TL.get();
     }
 
     public void removePrinciple() {
-        USERNAME_TL.remove();
+        EC_TL.remove();
     }
 
     public boolean isPresent(User user) {
-        return user.getUsername().equals(USERNAME_TL.get());
+        return user.equals(EC_TL.get().getUser());
     }
 
 }

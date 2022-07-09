@@ -1,15 +1,13 @@
 package ir.civilization.validator;
 
-import ir.civilization.dao.UserDao;
+import ir.civilization.dao.user.UserDao;
 import ir.civilization.dto.ChangePasswordDTO;
 import ir.civilization.dto.ProfileDTO;
 import ir.civilization.dto.UserDTO;
-import ir.civilization.exception.CurrentPasswordIncorrectException;
-import ir.civilization.exception.NicknameAlreadyExistException;
-import ir.civilization.exception.SamePasswordException;
-import ir.civilization.exception.UsernameAlreadyExistException;
+import ir.civilization.exception.*;
 import ir.civilization.holder.UserHolder;
 import ir.civilization.model.user.User;
+import ir.civilization.security.AuthenticatedUserHolder;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Collection;
@@ -17,6 +15,15 @@ import java.util.Collection;
 public final class UserValidator {
 
     private static final UserDao USER_DAO = UserDao.INSTANCE;
+
+    public static void checkAuthentication() {
+        if (!isAnyAuthenticated())
+            throw new UnAuthorizedException();
+    }
+
+    public static boolean isAnyAuthenticated() {
+        return AuthenticatedUserHolder.INSTANCE.getPrinciple() != null;
+    }
 
     public static void validateUserAddition(UserDTO userDTO) {
         Collection<User> users = UserHolder.INSTANCE.getAll();
