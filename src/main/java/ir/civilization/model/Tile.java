@@ -7,6 +7,7 @@ import ir.civilization.model.terrain.TerrainFeatures;
 import ir.civilization.model.unit.CivilianUnit;
 import ir.civilization.model.unit.MilitaryUnit;
 import ir.civilization.model.unit.Unit;
+import ir.civilization.model.unit.UnitType;
 import lombok.Data;
 
 @Data
@@ -59,5 +60,16 @@ public class Tile {
 
     public boolean isAccessible() {
         return type != TerrainType.OCEAN && this.type != TerrainType.MOUNTAIN;
+    }
+
+    public Unit getUnit(UnitType unitType) {
+        switch (unitType) {
+            case COMBAT:
+                return this.getUnitNez();
+            case NONCOMBAT:
+                return this.getUnitGNez();
+            default:
+                throw new IllegalStateException("WTF");
+        }
     }
 }

@@ -8,6 +8,7 @@ import ir.civilization.holder.MapHolder;
 import ir.civilization.menu.AbstractMenuAction;
 import ir.civilization.model.Tile;
 import ir.civilization.model.unit.Unit;
+import ir.civilization.validator.UserValidator;
 
 public class MoveToUnitMenuAction extends AbstractMenuAction<PositionDTO> {
 
@@ -23,19 +24,31 @@ public class MoveToUnitMenuAction extends AbstractMenuAction<PositionDTO> {
 
     @Override
     public void takeAction(PositionDTO v) {
-        GameContext gameContext = GameHolder.GTL.get();
+        // validation user authentication
+        UserValidator.checkAuthentication();
+
+        GameContext gameContext = GameHolder.getCreatedContext();
         Unit activeUnit = gameContext.getActiveUnit();
         if (activeUnit == null)
             throw new IllegalArgumentException("no active unit founded!");
 
-        Tile newTile = MapHolder.MAP.getMap()[v.getX()][v.getY()];
+        int x = v.getX();
+        int y = v.getY();
+        Tile newTile = MapHolder.MAP.getTile(x, y);
         if (!newTile.isAccessible())
             throw new IllegalArgumentException("tile is not accessible: " + newTile.getType());
 
         final Tile oldTile = activeUnit.getTile();
         newTile.setUnit(activeUnit);
-        oldTile.removeUnit(activeUnit);
+
         activeUnit.setTile(newTile);
+
+        if (oldTile == null)
+            System.out.println("Unit old tile is null!");
+        else
+            oldTile.removeUnit(activeUnit);
+
+        System.out.printf("unit moved to tile (%d,%d) successfully!\n", x, y);
     }
 
 }

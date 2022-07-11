@@ -2,6 +2,5 @@ package ir.civilization.dto;
 
 import org.apache.commons.cli.CommandLine;
 
-public interface CmdLoader {
-    void loadFrom(CommandLine commandLine);
+public interface CmdLoader extends DtoLoader<CommandLine> {
 }

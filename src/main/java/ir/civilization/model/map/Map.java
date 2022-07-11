@@ -83,6 +83,7 @@ public class Map {
     }
 
     public Tile getTile(int r, int c) {
+        validateInput(r, c);
         return map[r][c];
     }
 
@@ -100,6 +101,12 @@ public class Map {
 
     public Tile getNearestNonBandit(int r, int c) {
         return bfs(r, c);
+    }
+
+    private void validateInput(int r, int c) {
+        if ((r < 0 || r > this.map.length)
+                || (c < 0 || c > this.map[0].length))
+            throw new IllegalArgumentException(String.format("invalid tile position (%d,%d)", r, c));
     }
 
     private Tile bfs(int r, int c) {

@@ -1,11 +1,14 @@
 package ir.civilization.model.unit;
 
+import ir.civilization.model.Civilization;
 import ir.civilization.model.Tile;
 import ir.civilization.model.resource.Resource;
 import ir.civilization.model.technology.Technology;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class Unit {
     private String name;
     private int cost;
@@ -17,7 +20,7 @@ public class Unit {
     private Technology technologyRequired;
     private UnitType type;
     private Tile tile;
-
+    private Civilization civilization;
 
     private int baseEndurance;
     private int endurance;
@@ -27,4 +30,19 @@ public class Unit {
     private int initialResourceCost;
     private int initialHappinessCost;
     private boolean canAttack;
+
+    @Override
+    public String toString() {
+        return "Unit{" +
+                "name='" + name + '\'' +
+                ", cost=" + cost +
+                ", combatType='" + combatType + '\'' +
+                ", combatStrength=" + combatStrength +
+                ", rangedCombatStrength=" + rangedCombatStrength +
+                ", movement=" + movement +
+                ", resourcesRequired=" + resourcesRequired +
+                ", technologyRequired=" + technologyRequired +
+                ", type=" + type +
+                '}';
+    }
 }

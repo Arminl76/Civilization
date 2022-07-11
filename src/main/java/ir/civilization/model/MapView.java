@@ -57,12 +57,8 @@ public class MapView {
             return String.format(" %-8s ", "");
         });
 
-        functions.add((t) -> {
-            return String.format(" %-8s ", t.getType().getCost());
-        });
-        functions.add((t) -> {
-            return String.format(" %-8s ", t.getType().getSymbol());
-        });
+        functions.add((t) -> String.format(" %-8s ", t.getType().getCost()));
+        functions.add((t) -> String.format(" %-8s ", t.getType().getSymbol()));
         return functions;
     }
 
