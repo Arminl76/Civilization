@@ -38,6 +38,17 @@ public class MoveToUnitMenuAction extends AbstractMenuAction<PositionDTO> {
         if (!newTile.isAccessible())
             throw new IllegalArgumentException("tile is not accessible: " + newTile.getType());
 
+        int cost = newTile.getType().getCost();
+        if (cost == -1)
+            throw new IllegalStateException("Tile unreachable!");
+
+        int mp = gameContext.getMp();
+        if (cost > mp)
+            throw new IllegalStateException(String.format("Your MP count is not enough to go there! traveling cost: %d , your mp: %d", cost, mp));
+
+        // decrease player mp
+        gameContext.decreaseMp(cost);
+
         final Tile oldTile = activeUnit.getTile();
         newTile.setUnit(activeUnit);
 

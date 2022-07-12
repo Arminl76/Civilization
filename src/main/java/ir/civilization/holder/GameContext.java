@@ -7,5 +7,14 @@ import lombok.Data;
 public class GameContext {
 
     private Unit activeUnit;
+    private int mp = 0;
+
+    public void increaseMp(int amount) {
+        mp += amount;
+    }
+
+    public void decreaseMp(int amount) {
+        mp -= amount;
+    }
 
 }
