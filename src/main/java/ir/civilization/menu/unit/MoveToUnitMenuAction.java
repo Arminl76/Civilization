@@ -35,7 +35,7 @@ public class MoveToUnitMenuAction extends AbstractMenuAction<PositionDTO> {
         int x = v.getX();
         int y = v.getY();
         Tile newTile = MapHolder.MAP.getTile(x, y);
-        if (!newTile.isAccessible())
+        if (newTile.isNotAccessible())
             throw new IllegalArgumentException("tile is not accessible: " + newTile.getType());
 
         int cost = newTile.getType().getCost();

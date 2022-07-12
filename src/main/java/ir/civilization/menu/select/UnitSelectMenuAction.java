@@ -36,7 +36,7 @@ public class UnitSelectMenuAction extends AbstractMenuAction<SelectUnitDTO> {
         int x = dto.getPosition().getX();
         int y = dto.getPosition().getY();
         Tile tile = MapHolder.MAP.getTile(x, y);
-        if (!tile.isAccessible())
+        if (tile.isNotAccessible())
             throw new IllegalArgumentException("tile is not accessible: " + tile.getType());
 
         UnitType unitType = dto.getUnitType();
