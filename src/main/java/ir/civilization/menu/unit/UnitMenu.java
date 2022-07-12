@@ -13,6 +13,7 @@ public class UnitMenu extends AbstractMenu {
     public static final UnitMenu INSTANCE = new UnitMenu();
 
     private static final String ACTION_MOVETO = "moveto";
+    private static final String ACTION_DELETE = "delete";
 
     private static final String FLAG_X = "x";
     private static final String FLAG_Y = "y";
@@ -41,6 +42,7 @@ public class UnitMenu extends AbstractMenu {
     public Map<String, AbstractMenuAction<?>> getActionsMap() {
         Map<String, AbstractMenuAction<?>> actions = new HashMap<>();
         actions.put(ACTION_MOVETO, MoveToUnitMenuAction.INSTANCE);
+        actions.put(ACTION_DELETE, DeleteUnitMenuAction.INSTANCE);
         return actions;
     }
 

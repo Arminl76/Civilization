@@ -1,11 +1,13 @@
 package ir.civilization.holder;
 
+import ir.civilization.model.Civilization;
 import ir.civilization.model.unit.Unit;
 import lombok.Data;
 
 @Data
 public class GameContext {
 
+    private Civilization civilization = new Civilization();
     private Unit activeUnit;
     private int mp = 0;
 

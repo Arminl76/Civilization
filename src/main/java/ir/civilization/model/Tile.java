@@ -10,6 +10,10 @@ import ir.civilization.model.unit.Unit;
 import ir.civilization.model.unit.UnitType;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 @Data
 public class Tile {
     private Resource resource;
@@ -58,8 +62,16 @@ public class Tile {
         return occupant == null;
     }
 
+    public boolean isNotAccessible() {
+        return !this.isAccessible();
+    }
+
     public boolean isAccessible() {
-        return type != TerrainType.OCEAN && this.type != TerrainType.MOUNTAIN;
+        List<TerrainFeatureType> terrainFeatures = this.getType().getTerrainFeatures();
+        Optional<TerrainFeatureType> terrainFeature = terrainFeatures.stream()
+                .filter(tf -> tf == TerrainFeatureType.FORREST)
+                .findAny();
+        return type != TerrainType.HILL && this.type != TerrainType.MOUNTAIN && !terrainFeature.isPresent();
     }
 
     public Unit getUnit(UnitType unitType) {
@@ -71,5 +83,14 @@ public class Tile {
             default:
                 throw new IllegalStateException("WTF");
         }
+    }
+
+    public List<Unit> getUnits() {
+        List<Unit> units = new ArrayList<>();
+        if (this.getUnitNez() != null)
+            units.add(this.getUnitNez());
+        if (this.getUnitGNez() != null)
+            units.add(this.getUnitGNez());
+        return units;
     }
 }
