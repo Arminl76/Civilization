@@ -5,7 +5,8 @@ public class UnAuthorizedException extends RuntimeException {
     public UnAuthorizedException() {
     }
 
-    public UnAuthorizedException(String message) {
-        super(message);
+    @Override
+    public String getMessage() {
+        return "you are unauthenticated";
     }
 }

@@ -24,6 +24,7 @@ public class UserLogoutMenuAction extends AbstractMenuAction<EmptyCmdLoader> {
     @Override
     public void takeAction(EmptyCmdLoader emptyCmdLoader) {
         authenticatedUserHolder.removePrinciple();
+        System.out.println("you logged out successfully!");
     }
 
 }

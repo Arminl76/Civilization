@@ -30,7 +30,7 @@ public class UserLoginMenuAction extends AbstractMenuAction<UserDTO> {
         Optional<User> user = userDao.findByUsernameAndPassword(userDTO.getUsername(), userDTO.getPassword());
         if (user.isPresent()) {
             authenticatedUserHolder.setPrinciple(user.get());
-            System.out.println("user logged in successfully!");
+            System.out.println("You logged in successfully!");
         } else
             throw new BadCredentialsException();
     }

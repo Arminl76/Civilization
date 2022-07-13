@@ -3,6 +3,7 @@ package ir.civilization.menu.play;
 
 import ir.civilization.dao.user.UserDao;
 import ir.civilization.dto.PlayGameDTO;
+import ir.civilization.game.GameTurnThread;
 import ir.civilization.holder.MapHolder;
 import ir.civilization.menu.AbstractMenuAction;
 import ir.civilization.model.City;
@@ -10,7 +11,7 @@ import ir.civilization.model.Civilization;
 import ir.civilization.model.Tile;
 import ir.civilization.model.map.Map;
 import ir.civilization.model.user.User;
-import ir.civilization.validator.UserValidator;
+import lombok.SneakyThrows;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,9 +31,10 @@ public class PlayGameMenuAction extends AbstractMenuAction<PlayGameDTO> {
     }
 
     @Override
+    @SneakyThrows
     public void takeAction(PlayGameDTO dto) {
         // validation user authentication
-        UserValidator.checkAuthentication();
+//        UserValidator.checkAuthentication();
         List<String> players = dto.getPlayers();
         System.out.println("players: " + players);
 
@@ -50,6 +52,10 @@ public class PlayGameMenuAction extends AbstractMenuAction<PlayGameDTO> {
             City city = new City(civilization);
             tile.setOccupant(city);
         }
+
+        GameTurnThread gameTurnThread = new GameTurnThread(players);
+        gameTurnThread.start();
+        gameTurnThread.join();
     }
 
 }
