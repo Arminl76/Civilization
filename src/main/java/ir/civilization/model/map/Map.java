@@ -155,4 +155,18 @@ public class Map {
             return 0;
         }
     }
+
+    public Tile getRandomEmptyTile() {
+        Tile tile = this.getRandomTile();
+        while (!tile.isEmpty()) tile = this.getRandomTile();
+        return tile;
+    }
+
+    private static final SecureRandom TILE_SELECTION_RANDOM = new SecureRandom();
+
+    public Tile getRandomTile() {
+        int x = TILE_SELECTION_RANDOM.nextInt(10);
+        int y = TILE_SELECTION_RANDOM.nextInt(10);
+        return this.getTile(x, y);
+    }
 }

@@ -14,7 +14,7 @@ public class Civilization {
 
 
     private String name;
-    private String symbol;
+    private char symbol;
 
     private Technology technology = new Technology();
 

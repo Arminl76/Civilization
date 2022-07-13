@@ -4,11 +4,11 @@ import ir.civilization.model.Civilization;
 import ir.civilization.model.Symbolizable;
 
 public abstract class MapObject implements Symbolizable {
-    private int health;
+//    private int health;
     private Civilization owner;
 
-    public MapObject(int health, Civilization owner) {
-        this.health = health;
+    public MapObject(Civilization owner) {
+//        this.health = health;
         this.owner = owner;
     }
 
@@ -16,28 +16,28 @@ public abstract class MapObject implements Symbolizable {
         return owner;
     }
 
-    public int getHealth() {
-        return health;
-    }
-    public void damage(int healthAmount) {
-        this.health -= healthAmount;
-    }
+//    public int getHealth() {
+//        return health;
+//    }
+//    public void damage(int healthAmount) {
+//        this.health -= healthAmount;
+//    }
+//
+//    public boolean isDestroyed() {
+//        return this.health <= 0;
+//    }
 
-    public boolean isDestroyed() {
-        return this.health <= 0;
-    }
-
-    public abstract void tick();
+//    public abstract void tick();
 
     @Override
     public String toString() {
-        return "Health: " + health + ", Owner: " + owner.getName() + ".";
+        return "Owner: " + owner.getName() + ".";
     }
 
-    public String getStatusString() {
+/*    public String getStatusString() {
         String name = this.getClass().getSimpleName();
         return name + "\nOwner: " + owner.getName() + "\nHealth: " + health;
-    }
+    }*/
 
 
     public boolean isFriendly() {

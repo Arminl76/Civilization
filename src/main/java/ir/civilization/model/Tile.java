@@ -16,6 +16,7 @@ import java.util.Optional;
 
 @Data
 public class Tile {
+
     private Resource resource;
     private Terrain terrainType;
     private TerrainFeatures terrainF;

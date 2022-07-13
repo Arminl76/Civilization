@@ -28,7 +28,7 @@ public class MapView {
                     return String.format(" %-8s ", owner.getSymbol());
                 }
             }
-            return String.format(" %-8s ", "EMPTY");
+            return String.format(" %-8s ", "");
         });
 
         functions.add((t) -> {
