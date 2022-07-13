@@ -31,7 +31,7 @@
     "production": 0,
     "gold": 0,
     "canBeFoundOn": [
-      "grassland"
+      "Medow"
     ],
     "type": "BONUS",
     "improvementNeeded": "pasture"
@@ -147,7 +147,7 @@
     "improvementNeeded": "mine"
   },
   {
-    "key": "", //chieeeeee
+    "key": "eatIt", //chieeeeee
     "name": "بخور",
     "food": 0,
     "production": 0,

@@ -12,7 +12,7 @@
     ]
   }, {
   "key" : "farming",
-  "name": "کشت وکار",
+  "name": "کشت و کار",
   "tileEfficiency": null,
   "resourcesNeedThisDevelopment": [
     "banana", "cotton", "dye", "incense", "silk", "sugar"
@@ -53,6 +53,25 @@
   ],
   "preRequestTech": "engineering",
   "builtInThesePlaces": [
+    trapping
+    agriculture
+    Construction
+    mining
+    animal husbandry
+    Calendar
+    Masonry
+    trapping
+    Engineering,
+    ```
+    camp
+    Farm
+    Lumber Mill
+    mine
+    Pasture
+    farming
+    stone mine
+    Trading Post
+    factory,
     "plain", "desert", "meadow", "tundra", "snow"
   ]
 },  {
