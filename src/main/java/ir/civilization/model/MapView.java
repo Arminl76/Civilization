@@ -1,5 +1,7 @@
 package ir.civilization.model;
 
+import ir.civilization.holder.GameContext;
+import ir.civilization.holder.GameHolder;
 import ir.civilization.model.map.MapObject;
 import ir.civilization.model.unit.Unit;
 import org.apache.commons.collections4.CollectionUtils;
@@ -80,12 +82,18 @@ public class MapView {
 
                 for (int z = 0; z < tile.length; z++) {
                     Tile t = tile[z];
+                    GameContext context = GameHolder.getCreatedContext();
                     if (!t.isHasRiver())
                         System.out.print(" " + ANSI_BLACK_BACKGROUND + "|" + ANSI_RESET + " ");
                     else
                         System.out.print(" " + ANSI_BLUE_BACKGROUND + ANSI_WHITE + "*" + ANSI_RESET + " ");
-                    String s = function.apply(t);
-                    System.out.print(t.getType().getColor() + s + ANSI_RESET);
+                    String s = "";
+                    Tile visibleTile = t.getVisibleTile(context.getCivilization());
+                    if (visibleTile == null)
+                        s = String.format(" %-8s ", "");
+                    else
+                        s = t.getType().getColor() + function.apply(visibleTile) + ANSI_RESET;
+                    System.out.print(s);
                     if (z == tile.length - 1)
                         System.out.print(ANSI_BLACK_BACKGROUND + "|" + ANSI_RESET);
                 }

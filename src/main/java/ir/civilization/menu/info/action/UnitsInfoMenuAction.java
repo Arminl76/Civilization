@@ -23,7 +23,7 @@ public class UnitsInfoMenuAction extends AbstractMenuAction<EmptyCmdLoader> {
 
     @Override
     public void takeAction(EmptyCmdLoader v) {
-//        Civilization civilization = authHolder.getCurrentExecutionContext().getCivilization();
+//        Civilization civilization = GameHolder.getCreatedContext().getCivilization();
 //        String json = JacksonUtils.getJsonFromObject(
 //                DtoUtils.createAndLoadList(
 //                        unitDao.getUnitsByCivilization(civilization),

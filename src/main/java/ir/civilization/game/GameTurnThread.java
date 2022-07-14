@@ -1,5 +1,6 @@
 package ir.civilization.game;
 
+import ir.civilization.model.Civilization;
 import lombok.SneakyThrows;
 
 import java.util.ArrayList;
@@ -8,14 +9,17 @@ import java.util.List;
 
 public class GameTurnThread extends Thread {
 
+    public static final Object ROUND_LOCK = new Object();
+
     private final List<Thread> userThreads;
 
-    public GameTurnThread(List<String> players) {
+    public GameTurnThread(List<Civilization> civilizations) {
         ArrayList<Thread> list = new ArrayList<>();
-        for (String player : players) {
-            list.add(new GameUserThread(player));
+        for (Civilization civilization : civilizations) {
+            list.add(new GameUserThread(civilization));
         }
         this.userThreads = Collections.unmodifiableList(list);
+
     }
 
     @SuppressWarnings("InfiniteLoopStatement")
@@ -26,9 +30,9 @@ public class GameTurnThread extends Thread {
 
         while (true) {
             for (Thread userThread : userThreads) {
-                System.out.printf("%s's turn\n", userThread.getName());
-                userThread.run();
-                userThread.join();
+                Thread thread = new Thread(userThread, userThread.getName());
+                thread.start();
+                thread.join();
             }
         }
 

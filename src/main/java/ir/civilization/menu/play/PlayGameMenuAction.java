@@ -13,6 +13,8 @@ import ir.civilization.model.map.Map;
 import ir.civilization.model.user.User;
 import lombok.SneakyThrows;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,6 +40,7 @@ public class PlayGameMenuAction extends AbstractMenuAction<PlayGameDTO> {
         List<String> players = dto.getPlayers();
         System.out.println("players: " + players);
 
+        List<Civilization> civilizations = new ArrayList<>();
         Map map = MapHolder.MAP;
         char symbol = 'A';
         for (String player : players) {
@@ -49,11 +52,13 @@ public class PlayGameMenuAction extends AbstractMenuAction<PlayGameDTO> {
             civilization.setSymbol(symbol++);
             civilization.setUser(user.get());
             Tile tile = map.getRandomEmptyTile();
+            civilization.setTiles(Arrays.asList(tile));
             City city = new City(civilization);
             tile.setOccupant(city);
+            civilizations.add(civilization);
         }
 
-        GameTurnThread gameTurnThread = new GameTurnThread(players);
+        GameTurnThread gameTurnThread = new GameTurnThread(civilizations);
         gameTurnThread.start();
         gameTurnThread.join();
     }

@@ -9,10 +9,9 @@ import ir.civilization.model.unit.MilitaryUnit;
 import ir.civilization.model.unit.Unit;
 import ir.civilization.model.unit.UnitType;
 import lombok.Data;
+import org.apache.commons.collections4.CollectionUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Data
 public class Tile {
@@ -29,12 +28,26 @@ public class Tile {
     private MilitaryUnit unitNez;
     private CivilianUnit unitGNez;
 
+    private Map<Unit, Tile> unitHistory;
+
     private boolean hasRiver;
 
     public Tile(MapObject occupant, Position position, boolean hasRiver) {
         this.occupant = occupant;
         this.position = position;
         this.hasRiver = hasRiver;
+    }
+
+    public void addToHistory(Unit unit) {
+        Tile copy = this.createCopy();
+        Map<Unit, Tile> history = this.getCreatedUnitHistory();
+        history.put(unit, copy);
+    }
+
+    public Tile createCopy() {
+        Tile tile = new Tile(this.getOccupant(), this.getPosition(), this.hasRiver);
+        tile.setType(this.getType());
+        return tile;
     }
 
     public void setUnit(Unit unit) {
@@ -50,6 +63,7 @@ public class Tile {
 
             unitGNez = (CivilianUnit) unit;
         }
+        addToHistory(unit);
     }
 
     public void removeUnit(Unit unit) {
@@ -75,6 +89,36 @@ public class Tile {
         return type != TerrainType.HILL && this.type != TerrainType.MOUNTAIN && !terrainFeature.isPresent();
     }
 
+    public Tile getVisibleTile(Civilization civilization) {
+        List<Tile> tiles = civilization.getTiles();
+        if (tiles.contains(this))
+            return this;
+
+        for (Tile tile : tiles) {
+            double ac = Math.abs(tile.getPosition().getY() - this.getPosition().getY());
+            double cb = Math.abs(tile.getPosition().getX() - this.getPosition().getX());
+
+            double distance = Math.hypot(ac, cb);
+            if (distance == 1)
+                return this;
+
+            List<Unit> units = getUnits();
+            if (CollectionUtils.isNotEmpty(units) && distance <= 2)
+                return this;
+
+            Map<Unit, Tile> unitHistory = this.getUnitHistory();
+            if (unitHistory != null) {
+                Set<Unit> unitKeys = unitHistory.keySet();
+                for (Unit unitKey : unitKeys) {
+                    if (unitKey.equals(tile.getUnitNez()) || unitKey.equals(tile.getUnitGNez()))
+                        return unitHistory.get(unitKey);
+                }
+            }
+        }
+
+        return null;
+    }
+
     public Unit getUnit(UnitType unitType) {
         switch (unitType) {
             case COMBAT:
@@ -93,5 +137,12 @@ public class Tile {
         if (this.getUnitGNez() != null)
             units.add(this.getUnitGNez());
         return units;
+    }
+
+    public Map<Unit, Tile> getCreatedUnitHistory() {
+        if (this.unitHistory == null)
+            this.unitHistory = new HashMap<>();
+
+        return unitHistory;
     }
 }

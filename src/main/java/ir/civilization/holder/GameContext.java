@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class GameContext {
 
-    private Civilization civilization = new Civilization();
+    private Civilization civilization;
     private Unit activeUnit;
     private int mp = 0;
 
