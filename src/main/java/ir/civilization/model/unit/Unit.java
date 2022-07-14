@@ -35,16 +35,6 @@ public abstract class Unit {
 
     @Override
     public String toString() {
-        return "Unit{" +
-                "name='" + name + '\'' +
-                ", cost=" + cost +
-                ", combatType='" + combatType + '\'' +
-                ", combatStrength=" + combatStrength +
-                ", rangedCombatStrength=" + rangedCombatStrength +
-                ", movement=" + movement +
-                ", resourcesRequired=" + resourcesRequired +
-                ", technologyRequired=" + technologyRequired +
-                ", type=" + type +
-                '}';
+        return this.getClass().getSimpleName();
     }
 }

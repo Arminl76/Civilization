@@ -100,12 +100,19 @@ public class Tile {
             double ac = Math.abs(tile.getPosition().getY() - this.getPosition().getY());
             double cb = Math.abs(tile.getPosition().getX() - this.getPosition().getX());
 
-            double distance = Math.hypot(ac, cb);
-            if (distance == 1)
-                return this;
+            List<Unit> units = tile.getUnits();
 
-            List<Unit> units = getUnits();
-            if (CollectionUtils.isNotEmpty(units) && distance <= 2)
+            double distance = Math.hypot(ac, cb);
+
+
+            if (CollectionUtils.isNotEmpty(units)) {
+                if (distance == 1 && !this.isInvisible())
+                    return this;
+                else if (distance == 2)
+                    return this;
+            }
+
+            if (distance == 1)
                 return this;
 
             Map<Unit, Tile> unitHistory = this.getUnitHistory();
@@ -119,6 +126,10 @@ public class Tile {
         }
 
         return null;
+    }
+
+    public boolean isInvisible() {
+        return this.getType() == TerrainType.MOUNTAIN;
     }
 
     public Unit getUnit(UnitType unitType) {
