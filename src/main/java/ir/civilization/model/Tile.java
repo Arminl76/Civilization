@@ -21,8 +21,8 @@ public class Tile {
     private TerrainFeatures terrainF;
     private TileSituation condition;
 
-    private TerrainType type;
-    private Position position;
+    private final TerrainType type;
+    private final Position position;
     private MapObject occupant;
 
     private MilitaryUnit unitNez;
@@ -30,10 +30,11 @@ public class Tile {
 
     private Map<Unit, Tile> unitHistory;
 
-    private boolean hasRiver;
+    private final boolean hasRiver;
 
-    public Tile(MapObject occupant, Position position, boolean hasRiver) {
+    public Tile(MapObject occupant, TerrainType type, Position position, boolean hasRiver) {
         this.occupant = occupant;
+        this.type = type;
         this.position = position;
         this.hasRiver = hasRiver;
     }
@@ -45,8 +46,9 @@ public class Tile {
     }
 
     public Tile createCopy() {
-        Tile tile = new Tile(this.getOccupant(), this.getPosition(), this.hasRiver);
-        tile.setType(this.getType());
+        Tile tile = new Tile(this.getOccupant(), this.getType(), this.getPosition(), this.hasRiver);
+        tile.setUnit(this.getUnitGNez().createCopy());
+        tile.setUnit(this.getUnitNez().createCopy());
         return tile;
     }
 

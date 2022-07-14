@@ -9,7 +9,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Unit {
+public abstract class Unit {
     private String name;
     private int cost;
     private String combatType;
@@ -30,6 +30,8 @@ public class Unit {
     private int initialResourceCost;
     private int initialHappinessCost;
     private boolean canAttack;
+
+    public abstract Unit createCopy();
 
     @Override
     public String toString() {

@@ -19,17 +19,13 @@ public class Map {
     public Map(int rows, int columns) {
         // TileType[] types = TileType.values();
         map = new Tile[rows][columns];
-        SecureRandom rand = new SecureRandom();
 
-        for (int r = 0; r < map.length; r++) {
-            for (int c = 0; c < map[r].length; c++) {
-                int i = rand.nextInt(3);
-                map[r][c] = new Tile(null, Position.builder()
-                        .x(r)
-                        .y(c)
-                        .build(), i == 0);
-            }
-        }
+//        for (int r = 0; r < map.length; r++) {
+//            for (int c = 0; c < map[r].length; c++) {
+//                int i = rand.nextInt(3);
+//                map[r][c] =;
+//            }
+//        }
 
         //Populate the map with different Terrain types
         populateMap();
@@ -42,6 +38,8 @@ public class Map {
         //this could be made better if you make map give you an array of
         //TileTypes instead
         SecureRandom rand = new SecureRandom();
+        SecureRandom riverRand = new SecureRandom();
+
         for (int r = 0; r < 10; r++) {
             TerrainType[] row = new TerrainType[10];
             for (int c = 0; c < 10; c++) {
@@ -75,7 +73,11 @@ public class Map {
                         break;
                 }
 
-                map[r][c].setType(type);
+                int i = rand.nextInt(3);
+                map[r][c] =  new Tile(null, type, Position.builder()
+                        .x(r)
+                        .y(c)
+                        .build(), i == 0);
                 row[c] = type;
             }
             tiles[r] = row;
