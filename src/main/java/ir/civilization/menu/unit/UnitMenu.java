@@ -4,6 +4,7 @@ import ir.civilization.menu.AbstractMenu;
 import ir.civilization.menu.AbstractMenuAction;
 import ir.civilization.menu.unit.action.DeleteUnitMenuAction;
 import ir.civilization.menu.unit.action.FoundCityMenuAction;
+import ir.civilization.menu.unit.action.MoveToUnitMenuAction;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 
@@ -21,10 +22,12 @@ public class UnitMenu extends AbstractMenu {
     private static final String FLAG_X = "x";
     private static final String FLAG_Y = "y";
     private static final String FLAG_CITY = "city";
+    private static final String FLAG_HEAL = "heal";
 
     public static final Option OPTIONS_X = new Option(FLAG_X, FLAG_X, true, "x pos");
     public static final Option OPTIONS_Y = new Option(FLAG_Y, FLAG_Y, true, "y pos");
     public static final Option OPTIONS_CITY = new Option(FLAG_CITY, FLAG_CITY, false, "city");
+    public static final Option OPTIONS_HEAL = new Option(FLAG_HEAL, FLAG_HEAL, false, "heal");
 
 
     private UnitMenu() {
