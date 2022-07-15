@@ -8,12 +8,13 @@ import ir.civilization.model.unit.CivilianUnit;
 import ir.civilization.model.unit.MilitaryUnit;
 import ir.civilization.model.unit.Unit;
 import ir.civilization.model.unit.UnitType;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.*;
 
-@Data
+@Getter @Setter
 public class Tile {
 
     private Resource resource;
@@ -91,8 +92,24 @@ public class Tile {
         return type != TerrainType.HILL && this.type != TerrainType.MOUNTAIN && !terrainFeature.isPresent();
     }
 
-    public Tile getVisibleTile(Civilization civilization) {
-        List<Tile> tiles = civilization.getTiles();
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tile tile = (Tile) o;
+        return Objects.equals(position, tile.position);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(position);
+    }
+
+    /**
+     * Return null if tile is invisible
+     */
+    public Tile getVisibleCurrentTileOrHistory(Civilization civilization) {
+        Set<Tile> tiles = civilization.getTiles();
         if (tiles.contains(this))
             return this;
 

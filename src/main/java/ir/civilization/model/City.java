@@ -1,7 +1,11 @@
 package ir.civilization.model;
 
 import ir.civilization.model.map.MapObject;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 public class City extends MapObject {
 
     private String name;

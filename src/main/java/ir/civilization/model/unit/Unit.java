@@ -31,6 +31,8 @@ public abstract class Unit {
     private int initialHappinessCost;
     private boolean canAttack;
 
+    private UnitRole role;
+
     public abstract Unit createCopy();
 
     @Override

@@ -35,7 +35,11 @@ public class GameMainMenu {
             try {
                 menu.run(input);
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                String message = e.getMessage();
+                if (message != null)
+                    System.out.println(message);
+                else
+                    e.printStackTrace();
             }
         }
     }

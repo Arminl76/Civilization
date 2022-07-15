@@ -1,6 +1,6 @@
 package ir.civilization.model.unit;
 
-public enum UnitModel {
+public enum UnitRole {
 
     ARCHER(70,2),
 
@@ -55,7 +55,7 @@ public enum UnitModel {
     private int cost;
     private int movement;
 
-    UnitModel(int cost, int movement) {
+    UnitRole(int cost, int movement) {
         this.cost = cost;
         this.movement = movement;
     }

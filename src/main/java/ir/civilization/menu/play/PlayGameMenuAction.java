@@ -14,7 +14,6 @@ import ir.civilization.model.user.User;
 import lombok.SneakyThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,7 +51,7 @@ public class PlayGameMenuAction extends AbstractMenuAction<PlayGameDTO> {
             civilization.setSymbol(symbol++);
             civilization.setUser(user.get());
             Tile tile = map.getRandomEmptyTile();
-            civilization.setTiles(Arrays.asList(tile));
+            civilization.getTiles().add(tile);
             City city = new City(civilization);
             tile.setOccupant(city);
             civilizations.add(civilization);

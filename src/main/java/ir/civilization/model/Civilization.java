@@ -6,8 +6,9 @@ import ir.civilization.model.user.User;
 import lombok.Data;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 @Data
 public class Civilization {
@@ -26,7 +27,7 @@ public class Civilization {
     private int happiness = 50;
 
     private User user;
-    private List<Tile> tiles;
+    private Set<Tile> tiles = new HashSet<>();
 
     public boolean hasAccessToUnit(Unit unit) {
         Optional<Unit> uo = this.tiles.stream()

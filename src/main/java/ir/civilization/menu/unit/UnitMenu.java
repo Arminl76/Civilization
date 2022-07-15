@@ -2,6 +2,8 @@ package ir.civilization.menu.unit;
 
 import ir.civilization.menu.AbstractMenu;
 import ir.civilization.menu.AbstractMenuAction;
+import ir.civilization.menu.unit.action.DeleteUnitMenuAction;
+import ir.civilization.menu.unit.action.FindUnitMenuAction;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 
@@ -14,12 +16,15 @@ public class UnitMenu extends AbstractMenu {
 
     private static final String ACTION_MOVETO = "moveto";
     private static final String ACTION_DELETE = "delete";
+    private static final String FOUND = "found";
 
     private static final String FLAG_X = "x";
     private static final String FLAG_Y = "y";
+    private static final String FLAG_CITY = "city";
 
     public static final Option OPTIONS_X = new Option(FLAG_X, FLAG_X, true, "x pos");
     public static final Option OPTIONS_Y = new Option(FLAG_Y, FLAG_Y, true, "y pos");
+    public static final Option OPTIONS_CITY = new Option(FLAG_CITY, FLAG_CITY, false, "city");
 
 
     private UnitMenu() {
@@ -35,6 +40,7 @@ public class UnitMenu extends AbstractMenu {
         Options options = new Options();
         options.addOption(OPTIONS_X);
         options.addOption(OPTIONS_Y);
+        options.addOption(OPTIONS_CITY);
         return options;
     }
 
@@ -43,6 +49,7 @@ public class UnitMenu extends AbstractMenu {
         Map<String, AbstractMenuAction<?>> actions = new HashMap<>();
         actions.put(ACTION_MOVETO, MoveToUnitMenuAction.INSTANCE);
         actions.put(ACTION_DELETE, DeleteUnitMenuAction.INSTANCE);
+        actions.put(FOUND, FindUnitMenuAction.INSTANCE);
         return actions;
     }
 

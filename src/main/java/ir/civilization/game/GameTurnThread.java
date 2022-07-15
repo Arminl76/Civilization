@@ -30,6 +30,7 @@ public class GameTurnThread extends Thread {
 
         while (true) {
             for (Thread userThread : userThreads) {
+                System.out.printf("\n%s's turn! \n", userThread.getName());
                 Thread thread = new Thread(userThread, userThread.getName());
                 thread.start();
                 thread.join();

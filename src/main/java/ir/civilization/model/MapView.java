@@ -88,7 +88,7 @@ public class MapView {
                     else
                         System.out.print(" " + ANSI_BLUE_BACKGROUND + ANSI_WHITE + "*" + ANSI_RESET + " ");
                     String s = "";
-                    Tile visibleTile = t.getVisibleTile(context.getCivilization());
+                    Tile visibleTile = t.getVisibleCurrentTileOrHistory(context.getCivilization());
                     if (visibleTile == null)
                         s = String.format(" %-8s ", "");
                     else
