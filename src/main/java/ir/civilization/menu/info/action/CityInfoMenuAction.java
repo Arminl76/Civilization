@@ -1,9 +1,9 @@
 package ir.civilization.menu.info.action;
 
 
-import ir.civilization.dao.UnitDao;
+import ir.civilization.dao.CityDao;
 import ir.civilization.dto.EmptyCmdLoader;
-import ir.civilization.dto.unit.UnitResponseDTO;
+import ir.civilization.dto.unit.CityResponseDTO;
 import ir.civilization.holder.GameHolder;
 import ir.civilization.menu.AbstractMenuAction;
 import ir.civilization.model.Civilization;
@@ -11,13 +11,13 @@ import ir.civilization.utils.DtoUtils;
 import ir.civilization.utils.JacksonUtils;
 import ir.civilization.validator.UserValidator;
 
-public class UnitsInfoMenuAction extends AbstractMenuAction<EmptyCmdLoader> {
+public class CityInfoMenuAction extends AbstractMenuAction<EmptyCmdLoader> {
 
-    public static final UnitsInfoMenuAction INSTANCE = new UnitsInfoMenuAction();
+    public static final CityInfoMenuAction INSTANCE = new CityInfoMenuAction();
 
-    private final UnitDao unitDao = UnitDao.INSTANCE;
+    private final CityDao cityDao = CityDao.INSTANCE;
 
-    private UnitsInfoMenuAction() {
+    private CityInfoMenuAction() {
     }
 
     @Override
@@ -33,8 +33,8 @@ public class UnitsInfoMenuAction extends AbstractMenuAction<EmptyCmdLoader> {
         Civilization civilization = GameHolder.getCreatedContext().getCivilization();
         String json = JacksonUtils.getJsonFromObject(
                 DtoUtils.createAndLoadList(
-                        unitDao.getUnitsByCivilization(civilization),
-                        UnitResponseDTO::new
+                        cityDao.findAllByCivilization(civilization),
+                        CityResponseDTO::new
                 )
         );
         System.out.println(json);

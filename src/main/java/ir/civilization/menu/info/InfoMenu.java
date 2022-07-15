@@ -2,6 +2,7 @@ package ir.civilization.menu.info;
 
 import ir.civilization.menu.AbstractMenu;
 import ir.civilization.menu.AbstractMenuAction;
+import ir.civilization.menu.info.action.CityInfoMenuAction;
 import ir.civilization.menu.info.action.UnitsInfoMenuAction;
 import org.apache.commons.cli.Options;
 
@@ -40,6 +41,7 @@ public class InfoMenu extends AbstractMenu {
     public Map<String, AbstractMenuAction<?>> getActionsMap() {
         Map<String, AbstractMenuAction<?>> actions = new HashMap<>();
         actions.put(ACTION_UNITS, UnitsInfoMenuAction.INSTANCE);
+        actions.put(ACTION_CITIES, CityInfoMenuAction.INSTANCE);
         return actions;
     }
 
