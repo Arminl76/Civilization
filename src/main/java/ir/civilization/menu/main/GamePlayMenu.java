@@ -1,6 +1,7 @@
 package ir.civilization.menu.main;
 
 import ir.civilization.menu.AbstractMenu;
+import ir.civilization.menu.cheat.CheatMenu;
 import ir.civilization.menu.info.InfoMenu;
 import ir.civilization.menu.map.MapMenu;
 import ir.civilization.menu.play.PlayMenu;
@@ -26,7 +27,8 @@ public class GamePlayMenu {
                 PlayMenu.INSTANCE,
                 SelectMenu.INSTANCE,
                 UnitMenu.INSTANCE,
-                UserGameMenu.INSTANCE
+                UserGameMenu.INSTANCE,
+                CheatMenu.INSTANCE
         );
     }
 

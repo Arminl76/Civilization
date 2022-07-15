@@ -44,6 +44,7 @@ public class UnitMenu extends AbstractMenu {
         options.addOption(OPTIONS_X);
         options.addOption(OPTIONS_Y);
         options.addOption(OPTIONS_CITY);
+        options.addOption(OPTIONS_HEAL);
         return options;
     }
 

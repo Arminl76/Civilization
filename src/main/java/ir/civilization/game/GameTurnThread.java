@@ -9,7 +9,8 @@ import java.util.List;
 
 public class GameTurnThread extends Thread {
 
-    public static final Object ROUND_LOCK = new Object();
+    // TODO implementation
+    private static final int MAX_TURN = 20;
 
     private final List<Thread> userThreads;
 
@@ -22,19 +23,21 @@ public class GameTurnThread extends Thread {
 
     }
 
-    @SuppressWarnings("InfiniteLoopStatement")
+    public static int currentTurn = 0;
+
     @Override
     @SneakyThrows
     public void run() {
         List<Thread> userThreads = this.userThreads;
 
-        while (true) {
+        while (currentTurn < MAX_TURN) {
             for (Thread userThread : userThreads) {
                 System.out.printf("\n%s's turn! \n", userThread.getName());
                 Thread thread = new Thread(userThread, userThread.getName());
                 thread.start();
                 thread.join();
             }
+            currentTurn++;
         }
 
     }
