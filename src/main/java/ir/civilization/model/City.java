@@ -10,6 +10,7 @@ public class City extends MapObject {
 
     private String name;
     private char symbol;
+    private Tile tile;
 
     public City(Civilization owner) {
         super(owner);

@@ -6,10 +6,8 @@ import ir.civilization.model.Tile;
 import lombok.Getter;
 
 import java.security.SecureRandom;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Getter
 public class Map {
@@ -29,6 +27,12 @@ public class Map {
 
         //Populate the map with different Terrain types
         populateMap();
+    }
+
+    public Set<Tile> getMapAsSet() {
+        return Arrays.stream(this.map)
+                .flatMap(Arrays::stream)
+                .collect(Collectors.toSet());
     }
 
     //this will also populate the map hopefully

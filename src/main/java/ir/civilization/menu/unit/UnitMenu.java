@@ -3,7 +3,7 @@ package ir.civilization.menu.unit;
 import ir.civilization.menu.AbstractMenu;
 import ir.civilization.menu.AbstractMenuAction;
 import ir.civilization.menu.unit.action.DeleteUnitMenuAction;
-import ir.civilization.menu.unit.action.FindUnitMenuAction;
+import ir.civilization.menu.unit.action.FoundCityMenuAction;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 
@@ -49,7 +49,7 @@ public class UnitMenu extends AbstractMenu {
         Map<String, AbstractMenuAction<?>> actions = new HashMap<>();
         actions.put(ACTION_MOVETO, MoveToUnitMenuAction.INSTANCE);
         actions.put(ACTION_DELETE, DeleteUnitMenuAction.INSTANCE);
-        actions.put(FOUND, FindUnitMenuAction.INSTANCE);
+        actions.put(FOUND, FoundCityMenuAction.INSTANCE);
         return actions;
     }
 

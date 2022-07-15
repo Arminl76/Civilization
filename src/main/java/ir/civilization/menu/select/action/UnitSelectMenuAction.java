@@ -1,4 +1,4 @@
-package ir.civilization.menu.select;
+package ir.civilization.menu.select.action;
 
 
 import ir.civilization.dto.SelectUnitDTO;
@@ -46,7 +46,7 @@ public class UnitSelectMenuAction extends AbstractMenuAction<SelectUnitDTO> {
 //            selectedUnit = new MilitaryUnit();
 
         gameContext.setActiveUnit(selectedUnit);
-        System.out.println(selectedUnit.toString());
+        System.out.printf("unit \"%s\" selected as an active unit!\n", selectedUnit.getName());
     }
 
 }
