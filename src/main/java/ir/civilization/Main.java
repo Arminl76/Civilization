@@ -26,10 +26,8 @@ public class Main {
 //        GameMainMenu.INSTANCE.handleMenu("user logout");
 //        System.out.println(AuthenticatedUserHolder.INSTANCE.getPrinciple());
 //        GameMainMenu.INSTANCE.handleMenu("map show");
-        GameMenuRunner runner = new GameMenuRunner();
+        GameMenuRunner runner = new GameMenuRunner(GameMenuRunner.Mode.MAIN);
         runner.run();
-
-//        new GameTurnThread(Arrays.asList("ali", "mmad", "akbar"));
     }
 
 }

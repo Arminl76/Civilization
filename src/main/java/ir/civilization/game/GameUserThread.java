@@ -21,7 +21,7 @@ public class GameUserThread extends Thread {
             GameContext createdContext = GameHolder.getCreatedContext();
             createdContext.setCivilization(civilization);
         }
-        new GameMenuRunner().run();
+        new GameMenuRunner(GameMenuRunner.Mode.PLAY).run();
     }
 
 }

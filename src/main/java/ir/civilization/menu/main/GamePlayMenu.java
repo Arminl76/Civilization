@@ -1,24 +1,32 @@
 package ir.civilization.menu.main;
 
 import ir.civilization.menu.AbstractMenu;
+import ir.civilization.menu.info.InfoMenu;
+import ir.civilization.menu.map.MapMenu;
 import ir.civilization.menu.play.PlayMenu;
 import ir.civilization.menu.profile.ProfileMenu;
-import ir.civilization.menu.user.UserMenu;
+import ir.civilization.menu.select.SelectMenu;
+import ir.civilization.menu.unit.UnitMenu;
+import ir.civilization.menu.user.UserGameMenu;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class GameMainMenu {
+public class GamePlayMenu {
 
     private final List<AbstractMenu> menus;
 
-    public static final GameMainMenu INSTANCE = new GameMainMenu();
+    public static final GamePlayMenu INSTANCE = new GamePlayMenu();
 
-    private GameMainMenu() {
+    private GamePlayMenu() {
         this.menus = Arrays.asList(
-                PlayMenu.INSTANCE,
+                InfoMenu.INSTANCE,
                 ProfileMenu.INSTANCE,
-                UserMenu.INSTANCE
+                MapMenu.INSTANCE,
+                PlayMenu.INSTANCE,
+                SelectMenu.INSTANCE,
+                UnitMenu.INSTANCE,
+                UserGameMenu.INSTANCE
         );
     }
 
