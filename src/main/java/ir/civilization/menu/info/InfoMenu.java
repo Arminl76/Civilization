@@ -29,7 +29,7 @@ public class InfoMenu extends AbstractMenu {
 
     @Override
     public String getMenuName() {
-        return "profile";
+        return "info";
     }
 
     @Override

@@ -53,6 +53,8 @@ public class PlayGameMenuAction extends AbstractMenuAction<PlayGameDTO> {
             Tile tile = map.getRandomEmptyTile();
             civilization.getTiles().add(tile);
             City city = new City(civilization);
+            city.setTile(tile);
+            city.setName("c:" + user.get().getNickname().charAt(0));
             tile.setOccupant(city);
             civilizations.add(civilization);
         }

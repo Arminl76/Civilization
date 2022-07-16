@@ -164,7 +164,7 @@ public class Map {
 
     public Tile getRandomEmptyTile() {
         Tile tile = this.getRandomTile();
-        while (!tile.isEmpty() && tile.isAccessible()) tile = this.getRandomTile();
+        while (!tile.isEmpty() || !tile.isAccessible()) tile = this.getRandomTile();
         return tile;
     }
 

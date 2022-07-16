@@ -4,7 +4,6 @@ import ir.civilization.menu.AbstractMenu;
 import ir.civilization.menu.cheat.CheatMenu;
 import ir.civilization.menu.info.InfoMenu;
 import ir.civilization.menu.map.MapMenu;
-import ir.civilization.menu.play.PlayMenu;
 import ir.civilization.menu.profile.ProfileMenu;
 import ir.civilization.menu.select.SelectMenu;
 import ir.civilization.menu.unit.UnitMenu;
@@ -24,7 +23,6 @@ public class GamePlayMenu {
                 InfoMenu.INSTANCE,
                 ProfileMenu.INSTANCE,
                 MapMenu.INSTANCE,
-                PlayMenu.INSTANCE,
                 SelectMenu.INSTANCE,
                 UnitMenu.INSTANCE,
                 UserGameMenu.INSTANCE,
